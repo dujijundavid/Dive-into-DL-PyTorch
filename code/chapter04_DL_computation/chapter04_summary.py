@@ -143,6 +143,10 @@ if __name__ == "__main__":
         print(f"模块化模型参数量: {modular_params:,}")
         print(f"参数量是否相同: {monolithic_params == modular_params}")
         
+        # 调试输出
+        import sys
+        sys.stdout.flush()
+        
         # 模块化的优势：可以轻松修改结构
         flexible_model = ModularMLP(input_dim, [512, 256, 128, 64, 32], output_dim, dropout_rate=0.1)
         flexible_params = sum(p.numel() for p in flexible_model.parameters())
@@ -522,9 +526,13 @@ if __name__ == "__main__":
         new_model = ExampleModel(784, 256, 10)
         new_model.load_state_dict(torch.load('model_params.pth'))
         
-        # 验证加载成功
-        new_output = new_model(x)
-        params_match = torch.allclose(model(x), new_output)
+        # 验证加载成功 - 设置为评估模式以确保一致性
+        model.eval()
+        new_model.eval()
+        with torch.no_grad():
+            model_output = model(x)
+            new_output = new_model(x)
+            params_match = torch.allclose(model_output, new_output, atol=1e-6)
         print(f"参数加载验证: {'成功' if params_match else '失败'}")
         
         # 策略2：保存完整模型（不推荐，但有时必要）
@@ -834,7 +842,10 @@ if __name__ == "__main__":
             
             print(f"逐个处理时间: {sequential_time:.4f}秒")
             print(f"批量处理时间: {batch_time:.4f}秒")
-            print(f"批量处理加速比: {sequential_time/batch_time:.2f}x")
+            if batch_time > 0:
+                print(f"批量处理加速比: {sequential_time/batch_time:.2f}x")
+            else:
+                print("批量处理速度极快，无法计算精确加速比")
         
         optimize_batch_operations()
         
@@ -893,7 +904,10 @@ if __name__ == "__main__":
             
             print(f"低效计算时间: {inefficient_time:.4f}秒")
             print(f"优化计算时间: {efficient_time:.4f}秒")
-            print(f"优化后加速比: {inefficient_time/efficient_time:.2f}x")
+            if efficient_time > 0:
+                print(f"优化后加速比: {inefficient_time/efficient_time:.2f}x")
+            else:
+                print("优化后计算速度极快，无法计算精确加速比")
         
         optimize_computation_graph()
     
