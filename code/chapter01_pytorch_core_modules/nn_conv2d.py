@@ -127,13 +127,13 @@ with torch.no_grad():
 plt.figure(figsize=(15, 5))
 plt.subplot(131)
 plt.imshow(test_img[0, 0].numpy())
-plt.title('原始图像')
+plt.title('Original Image')
 plt.subplot(132)
 plt.imshow(out3x3[0, 0].numpy())
-plt.title('3x3卷积结果')
+plt.title('3x3 Convolution Result')
 plt.subplot(133)
 plt.imshow(out5x5[0, 0].numpy())
-plt.title('5x5卷积结果')
+plt.title('5x5 Convolution Result')
 plt.show()
 
 # 8. 验证步幅和填充的影响

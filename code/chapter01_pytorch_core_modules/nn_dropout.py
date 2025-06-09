@@ -123,9 +123,9 @@ for p in probabilities:
         out = drop(test_input)
     plt.hist(out.mean(dim=1).numpy(), bins=20, alpha=0.5, label=f'p={p}')
 
-plt.xlabel('输出均值')
-plt.ylabel('频率')
-plt.title('不同Dropout概率的分布')
+plt.xlabel('Output Mean')
+plt.ylabel('Frequency')
+plt.title('Distribution of Different Dropout Probabilities')
 plt.legend()
 plt.grid(True)
 plt.show()
@@ -181,10 +181,10 @@ with torch.no_grad():
 plt.figure(figsize=(12, 5))
 plt.subplot(121)
 plt.scatter(test_data[:, 0], test_data[:, 1])
-plt.title('原始数据')
+plt.title('Original Data')
 plt.subplot(122)
 plt.scatter(dropped[:, 0], dropped[:, 1])
-plt.title('Dropout后数据')
+plt.title('Data After Dropout')
 plt.show()
 
 # 10. 验证梯度流动

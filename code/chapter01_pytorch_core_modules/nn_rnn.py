@@ -123,10 +123,10 @@ with torch.no_grad():
 plt.figure(figsize=(12, 5))
 plt.subplot(121)
 plt.plot(out_rnn.squeeze().numpy())
-plt.title('RNN长序列响应')
+plt.title('RNN Long Sequence Response')
 plt.subplot(122)
 plt.plot(out_lstm.squeeze().numpy())
-plt.title('LSTM长序列响应')
+plt.title('LSTM Long Sequence Response')
 plt.show()
 
 # 6. 验证隐藏状态
@@ -148,9 +148,9 @@ with torch.no_grad():
 # 绘制隐藏状态变化
 plt.figure(figsize=(10, 5))
 plt.plot(hidden_states)
-plt.title('隐藏状态随时间的变化')
-plt.xlabel('时间步')
-plt.ylabel('隐藏状态值')
+plt.title('Hidden State Changes Over Time')
+plt.xlabel('Time Step')
+plt.ylabel('Hidden State Value')
 plt.grid(True)
 plt.show()
 
@@ -172,10 +172,10 @@ backward_out = out[:, :, 1:]
 plt.figure(figsize=(12, 5))
 plt.subplot(121)
 plt.plot(forward_out.squeeze().numpy())
-plt.title('前向RNN输出')
+plt.title('Forward RNN Output')
 plt.subplot(122)
 plt.plot(backward_out.squeeze().numpy())
-plt.title('后向RNN输出')
+plt.title('Backward RNN Output')
 plt.show()
 
 # 8. 验证梯度流动
@@ -221,8 +221,8 @@ for length in lengths:
 
 plt.figure(figsize=(10, 5))
 plt.plot(lengths, results, 'o-')
-plt.xlabel('序列长度')
-plt.ylabel('最终输出值')
-plt.title('序列长度对输出的影响')
+plt.xlabel('Sequence Length')
+plt.ylabel('Final Output Value')
+plt.title('Impact of Sequence Length on Output')
 plt.grid(True)
 plt.show() 

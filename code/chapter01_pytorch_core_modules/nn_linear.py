@@ -153,11 +153,11 @@ with torch.no_grad():
 plt.figure(figsize=(10, 5))
 plt.subplot(121)
 plt.scatter(points[:, 0], points[:, 1], alpha=0.5)
-plt.title('原始点')
+plt.title('Original Points')
 plt.grid(True)
 
 plt.subplot(122)
 plt.scatter(transformed_points[:, 0], transformed_points[:, 1], alpha=0.5)
-plt.title('线性变换后的点')
+plt.title('Points After Linear Transformation')
 plt.grid(True)
 plt.show() 

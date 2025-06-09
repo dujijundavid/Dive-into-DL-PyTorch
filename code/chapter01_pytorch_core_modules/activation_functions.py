@@ -294,7 +294,7 @@ def test_activation_performance():
 performance_results = test_activation_performance()
 
 # 6. 激活函数的可视化
-print("\n6. 激活函数的可视化：")
+print("\n6. Activation Function Visualization:")
 
 def plot_activation_functions():
     x = torch.linspace(-3, 3, 1000)
@@ -324,9 +324,9 @@ def plot_activation_functions():
     plt.tight_layout()
     plt.show()
 
-# 注意：在实际运行时取消注释下面的行
+# Note: Uncomment the following line to run the visualization
 # plot_activation_functions()
-print("激活函数可视化代码已准备就绪（取消注释plot_activation_functions()以查看图形）")
+print("Activation function visualization code is ready (uncomment plot_activation_functions() to view graphics)")
 
 # 7. 自定义激活函数
 print("\n7. 自定义激活函数：")
@@ -485,7 +485,7 @@ def activation_selection_guide():
 activation_selection_guide()
 
 # 11. 激活函数的梯度可视化
-print("\n11. 激活函数的梯度可视化：")
+print("\n11. Activation Function Gradient Visualization:")
 
 def visualize_gradients():
     x = torch.linspace(-3, 3, 1000, requires_grad=True)

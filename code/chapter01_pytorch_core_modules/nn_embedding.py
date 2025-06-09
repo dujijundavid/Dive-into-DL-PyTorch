@@ -140,7 +140,7 @@ plt.figure(figsize=(10, 8))
 plt.scatter(vectors[:, 0], vectors[:, 1])
 for i in range(20):
     plt.annotate(str(i), (vectors[i, 0], vectors[i, 1]))
-plt.title('嵌入空间可视化')
+plt.title('Embedding Space Visualization')
 plt.grid(True)
 plt.show()
 

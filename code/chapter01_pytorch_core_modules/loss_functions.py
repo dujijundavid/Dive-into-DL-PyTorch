@@ -123,7 +123,7 @@ bce_logits_value = bce_with_logits_loss(logits, targets_multilabel)
 print(f"带logits的二元交叉熵损失: {bce_logits_value.item():.6f}")
 
 # 3. 损失函数的可视化
-print("\n3. 损失函数的可视化：")
+print("\n3. Loss Function Visualization:")
 
 def plot_loss_functions():
     # 生成数据范围
@@ -162,9 +162,9 @@ def plot_loss_functions():
     plt.tight_layout()
     plt.show()
 
-# 注意：在实际运行时取消注释下面的行
+# Note: Uncomment the following line to run the visualization
 # plot_loss_functions()
-print("损失函数可视化代码已准备就绪（取消注释plot_loss_functions()以查看图形）")
+print("Loss function visualization code is ready (uncomment plot_loss_functions() to view graphics)")
 
 # 4. 类别不平衡的处理
 print("\n4. 类别不平衡的处理：")

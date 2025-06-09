@@ -249,11 +249,11 @@ pos_data = pe_example.pe[:100, 0, :].numpy()
 plt.figure(figsize=(12, 8))
 plt.imshow(pos_data.T, aspect='auto', cmap='viridis')
 plt.colorbar()
-plt.title('位置编码可视化')
-plt.xlabel('位置')
-plt.ylabel('编码维度')
-# plt.show()  # 取消注释以显示图像
-print("位置编码可视化已准备就绪（取消注释plt.show()以查看图形）")
+plt.title('Positional Encoding Visualization')
+plt.xlabel('Position')
+plt.ylabel('Encoding Dimension')
+# plt.show()  # Uncomment to display image
+print("Positional encoding visualization is ready (uncomment plt.show() to view graphics)")
 
 # 6. 交叉注意力机制
 print("\n6. 交叉注意力机制：")
@@ -288,8 +288,8 @@ class CausalSelfAttention(nn.Module):
         self.multihead_attention = MultiHeadAttention(d_model, num_heads)
     
     def forward(self, x):
-        seq_len = x.size(1)
-        causal_mask = create_causal_mask(seq_len).unsqueeze(0).unsqueeze(0)
+        batch_size, seq_len = x.size(0), x.size(1)
+        causal_mask = create_causal_mask(seq_len).unsqueeze(0).expand(batch_size, -1, -1)
         return self.multihead_attention(x, x, x, mask=causal_mask)
 
 # 测试因果注意力
@@ -302,11 +302,11 @@ print(f"因果掩码形状: {create_causal_mask(seq_len).shape}")
 causal_mask_vis = create_causal_mask(10)
 plt.figure(figsize=(8, 6))
 plt.imshow(causal_mask_vis.numpy(), cmap='Blues')
-plt.title('因果注意力掩码')
-plt.xlabel('Key位置')
-plt.ylabel('Query位置')
-# plt.show()  # 取消注释以显示图像
-print("因果掩码可视化已准备就绪")
+plt.title('Causal Attention Mask')
+plt.xlabel('Key Position')
+plt.ylabel('Query Position')
+# plt.show()  # Uncomment to display image
+print("Causal mask visualization is ready")
 
 # 8. 相对位置编码
 print("\n8. 相对位置编码：")
@@ -347,7 +347,7 @@ rel_pos_embeddings = rel_pos_encoding(seq_len)
 print(f"相对位置编码形状: {rel_pos_embeddings.shape}")
 
 # 9. 注意力可视化
-print("\n9. 注意力可视化：")
+print("\n9. Attention Visualization:")
 
 def visualize_attention_weights(attention_weights, input_tokens=None, layer_idx=0, head_idx=0):
     """可视化注意力权重"""
@@ -362,9 +362,9 @@ def visualize_attention_weights(attention_weights, input_tokens=None, layer_idx=
         plt.xticks(range(len(input_tokens)), input_tokens, rotation=45)
         plt.yticks(range(len(input_tokens)), input_tokens)
     
-    plt.title(f'注意力权重热力图 (层{layer_idx}, 头{head_idx})')
-    plt.xlabel('Key位置')
-    plt.ylabel('Query位置')
+    plt.title(f'Attention Weight Heatmap (Layer {layer_idx}, Head {head_idx})')
+    plt.xlabel('Key Position')
+    plt.ylabel('Query Position')
     # plt.tight_layout()
     # plt.show()
 
@@ -373,8 +373,8 @@ example_tokens = ['I', 'love', 'machine', 'learning', 'very', 'much']
 example_input = torch.randn(1, len(example_tokens), d_model)
 _, example_weights = multi_head_attention(example_input, example_input, example_input)
 
-print("注意力权重可视化已准备就绪")
-# visualize_attention_weights(example_weights, example_tokens)  # 取消注释以显示图像
+print("Attention weight visualization is ready")
+# visualize_attention_weights(example_weights, example_tokens)  # Uncomment to display image
 
 # 10. Transformer编码器层
 print("\n10. Transformer编码器层：")
